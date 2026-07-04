@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html><head><meta charset='utf-8'><title>US History Locations Map</title>
+<link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'/>
+<style>html,body,#map{height:100%;margin:0}.popup{max-width:320px}</style></head>
+<body><div id='map'></div>
+<script src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'></script>
+<script>
+var map=L.map('map').setView([39.5,-98.35],4);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'OpenStreetMap'}).addTo(map);
+var data=[
+['Philadelphia, PA',39.952583,-75.165222,'Where the Declaration of Independence was debated and adopted in 1776.','Independence Hall | Liberty Bell','SLC-PHL | SLC-ATL/DTW-PHL | SLC-DCA/IAD/BWI'],
+['Washington, D.C.',38.907045,-77.036735,'Symbolic landmarks of U.S. democracy.','Capitol & Washington Monument | National Archives | National Mall & Memorials','SLC-MSP/DTW/ATL-DCA/IAD/BWI'],
+['Boston, Massachusetts',42.3601,-71.05888,'Boston was central to early revolutionary protests and resistance leading to independence.','Boston Massacre Sites | Freedom Trail','SLC-BOS | connections'],
+['Yorktown, Virginia',37.238754,-76.509674,'Site of the final major battle of the Revolutionary War (1781).','American Revolution Museum at Yorktown','SLC-ATL/DTW/JFK-ORF'],
+['Valley Forge, Pennsylvania',39.888056,-75.593611,'Site of the winter encampment of the Continental Army.','National Memorial Arch','SLC-PHL | SLC-ATL/DTW-PHL'],
+['Fort McHenry, Maryland',39.2633,-76.5799,'Inspired the writing of the U.S. national anthem and site of defense during the War of 1812.','Star-Spangled Banner Trail | Fort McHenry Monument','SLC-BWI | SLC-ATL/MSP/DTW-PHL'],
+['Fort Monroe, Virginia',37.0171968,-76.2985941,'Important from early America through the Civil War and a refuge for enslaved people seeking freedom.','Fort Monroe National Monument | Casemate Museum','SLC-ATL-CHO/ROA'],
+['Independence Rock, Wyoming',42.4941258,-107.132556,'Landmark for westward travel and a place where pioneers celebrated July 4th.','Independence Rock State Historic Site','SLC-BIL | SLC-MSP-BIL'],
+['Gettysburg, Pennsylvania',39.83093,-77.2311,'Civil War battlefield tied to preservation of the Union.','Gettysburg National Military Park Museum and Visitor Center','SLC-DTW/ATL-MDT']
+];
+var bounds=[];
+data.forEach(r=>{var m=L.marker([r[1],r[2]]).addTo(map);m.bindTooltip('<div class="popup"><b>'+r[0]+'</b><br><br><b>How is this place important to US History?</b><br>'+r[3]+'<br><br><b>Things to See</b><br>'+r[4]+'<br><br><b>How to Nonrev there</b><br>'+r[5]+'</div>');bounds.push([r[1],r[2]]);});
+map.fitBounds(bounds);
+</script></body></html>
